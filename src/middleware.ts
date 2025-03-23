@@ -1,12 +1,11 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import createMiddleware from "next-intl/middleware";
-import { routing } from "./i18n/routing";
-
-import { i18n } from "../i18n-config";
-
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
+
+import { routing } from "./i18n/routing";
+import { i18n } from "../i18n-config";
 
 const PUBLIC_FILE = /\.(.*)$/;
 

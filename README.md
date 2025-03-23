@@ -12,6 +12,8 @@ yarn dev
 pnpm dev
 # or
 bun dev
+# or
+pnpm build:content // 手动从posts目录下mdx文件生成博客页面内容，指定pnpm dev 后，会自动生成
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -41,3 +43,21 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 npx prisma migrate dev --name init_test // 根据 prisma model 生成sql，操作远程数据库，生成表
 npx prisma generate // 生成prisma 客户端
 ```
+
+## 多语言
+
+使用了 `next-intl` 实现多语言支持
+
+`src/middleware.ts` 是 `next-intl` 的中间件，用于处理多语言请求
+
+`i18n-config.ts` 是 `next-intl` 的配置文件，用于配置多语言
+
+`src/i18n` 文件夹中是 `next-intl` 的导航和路由配置
+
+## 博客部分
+
+`pnpm build:content` // 手动从 posts 目录下 mdx 文件生成博客页面内容，指定 pnpm dev 后，会自动生成
+使用 `contentlayer` 生成博客页面内容，需要手动执行 `pnpm build:content` 命令，生成博客页面内容
+`contentlayer.config.ts` 是 `contentlayer` 的配置文件，用于配置博客页面内容,每次新增语言时，需要修改此配置文件
+
+`src/app/[locale]/blog/page.tsx` 是博客页面，使用 `next-intl` 实现多语言支持，使用 `contentlayer` 生成博客页面内容

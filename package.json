@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build:content": "contentlayer build" 
+    "build:content": "contentlayer build"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.6.0",

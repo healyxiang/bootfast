@@ -2,6 +2,8 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+// import { Link } from "../i18n/navigation";
+// TODO: 后续考虑使用 i18n 的 Link 优化
 import { Languages } from "lucide-react";
 
 import {

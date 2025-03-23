@@ -1,30 +1,27 @@
 // import Image from "next/image";
 import Link from "next/link";
-// import { useTranslations } from "next-intl";
-// import { useIntl } from "react-intl";
+import { useTranslations } from "next-intl";
 
 import { Container } from "@/components/Container";
 // import heroImg from "@/../public/static/images/homepage/rednote_homepage.png";
-// import { useTranslations } from "next-intl";
 
 export const Hero = () => {
-  // const { $t } = useIntl();
-  // console.log("$t $t:", $t);
-  // const t = useTranslations("hero");
-  // const t2 = useTranslations();
+  const t = useTranslations("hero");
+  const t2 = useTranslations();
   return (
     <>
       <Container className="flex flex-wrap">
         <div className="flex w-full items-center lg:w-1/2">
           <div className="mb-8 max-w-2xl">
             <h1 className="text-4xl font-bold leading-snug tracking-tight text-gray-800 dark:text-white lg:text-4xl lg:leading-tight xl:text-6xl xl:leading-tight">
-              Free Boot Fast Template for your next project
+              {t("title")}
             </h1>
             <p className="py-5 text-xl leading-normal text-gray-500 dark:text-gray-300 lg:text-xl xl:text-2xl">
               Make creating avatars simple and fun! Just upload your photo, and
               using advanced AI technology, we will generate a variety of
               stylized avatars for you.
             </p>
+            <p>{t2("test")}</p>
 
             <div className="flex flex-col items-start space-y-3 sm:flex-row sm:items-center sm:space-x-4 sm:space-y-0">
               <Link
