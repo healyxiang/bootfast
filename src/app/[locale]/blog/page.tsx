@@ -1,9 +1,30 @@
 import Link from "next/link";
+import { Locale } from "next-intl";
+import { use } from "react";
 import { compareDesc, format, parseISO } from "date-fns";
-import { allPosts, Post } from "contentlayer/generated";
+import {
+  allPosts,
+  Post,
+  allDePosts,
+  DePost,
+  allCsPosts,
+  CsPost,
+} from "contentlayer/generated";
 
-export const runtime = "edge";
-function PostCard(post: Post) {
+// export const runtime = "edge";
+
+type Props = {
+  params: Promise<{ locale: Locale }>;
+};
+
+const PostsLocaleMap = {
+  en: allPosts,
+  de: allDePosts,
+  cs: allCsPosts,
+};
+
+function PostCard(post: Post | DePost | CsPost) {
+  // console.log("post in post card:", post);
   return (
     <div className="mb-8">
       <h2 className="mb-1 text-xl">
@@ -22,10 +43,14 @@ function PostCard(post: Post) {
   );
 }
 
-export default function BlogListPage() {
-  const posts = allPosts.sort((a, b) =>
-    compareDesc(new Date(a.date), new Date(b.date))
+export default function BlogListPage({ params }: Props) {
+  // console.log("allPosts :", allPosts);
+  const { locale } = use(params);
+  console.log("locale in blog page:", locale);
+  const posts = PostsLocaleMap[locale as keyof typeof PostsLocaleMap].sort(
+    (a, b) => compareDesc(new Date(a.date), new Date(b.date))
   );
+  // console.log("posts :", posts);
 
   return (
     <div className="mx-auto max-w-2xl py-8">
