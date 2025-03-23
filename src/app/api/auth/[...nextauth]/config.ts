@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+// import NextAuth from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prima"; // 确保路径正确
 import GoogleProvider from "next-auth/providers/google";
@@ -50,11 +50,11 @@ export const authOptions: NextAuthOptions = {
     // updateAge: 24 * 60 * 60, // 24 hours
   },
   callbacks: {
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       console.log("token in callback:", token);
       return { ...session, user: { ...session.user, id: token.sub } };
     },
-    async jwt({ token, user, account, profile }) {
+    async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
       }
